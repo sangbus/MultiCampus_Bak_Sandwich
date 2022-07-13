@@ -15,16 +15,10 @@ public class aaa {
 				st = new StringTokenizer(br.readLine());
 				int num = Integer.parseInt(st.nextToken());
 				if(num==4 && score>=70)
-				{
 					System.out.println("4학년 합격입니다.");
-				}
 				else if(score>=60)
-				{
 					System.out.println("합격입니다.");
-				}
 				else
-				{
 					System.out.println("불합격입니다.");
-				}
 			}
 }
