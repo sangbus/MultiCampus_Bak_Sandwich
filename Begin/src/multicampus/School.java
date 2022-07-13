@@ -58,6 +58,7 @@ public class School {
 		Scanner sc = new Scanner(System.in);
 		int num=0;
 		School obj = new School();
+		int a = 1;
 		do
 		{
 			School.showMenu();
