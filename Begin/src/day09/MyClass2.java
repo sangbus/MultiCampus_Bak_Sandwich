@@ -41,6 +41,7 @@ public class MyClass2 extends  AbsClass implements HisInter{
 		System.out.println(((HisInter)a).b());
 		a.c();
 		System.out.println(MyClass2.str);
+		System.out.println("");
 	}
 
 	@Override
