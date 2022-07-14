@@ -21,7 +21,6 @@ interface HisInter extends Inter1,Inter2
 }
 public class MyClass2 extends  AbsClass implements HisInter{
 
-	
 	public static void main(String[] args) {
 		MyClass2 m = new MyClass2();
 		HisInter h = new MyClass2();
@@ -35,10 +34,10 @@ public class MyClass2 extends  AbsClass implements HisInter{
 		h.a();
 		System.out.println(h.b());
 		((AbsClass)h).c();
-		System.out.println(MyClass2.str);
+		System.out.println(HisInter.str);
 		System.out.println("AbsClass타입의 변수");
-		((HisInter)a).a();
-		System.out.println(((HisInter)a).b());
+		((MyClass2)a).a();
+		System.out.println(((MyClass2)a).b());
 		a.c();
 		System.out.println(MyClass2.str);
 		System.out.println("");
