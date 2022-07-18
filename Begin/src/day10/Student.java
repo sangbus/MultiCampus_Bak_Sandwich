@@ -1,5 +1,7 @@
 package day10;
 
+import day11_1.Member;
+
 public class Student {
 	private int id;
 	private String name;
@@ -23,5 +25,17 @@ public class Student {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	@Override
+	public boolean equals(Object obj)
+	{
+		if(obj instanceof Student)
+		{
+			Student user = (Student) obj;
+			boolean bool = user.name.equals(this.name)&& user.id == this.id;
+			return bool;
+		}
+		else
+			return false;
 	}
 }
