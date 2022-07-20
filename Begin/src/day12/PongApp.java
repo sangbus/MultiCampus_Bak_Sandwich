@@ -30,7 +30,8 @@ public class PongApp extends JFrame{
 		pN.add(tfName);
 		pN.add(btAdd);
 		pN.add(btSave);
-		
+
+		pN.add(btSave);
 		//=====리스너 부착=====
 		MyEventHandler handler = new MyEventHandler();
 		btAdd.addActionListener(handler);
