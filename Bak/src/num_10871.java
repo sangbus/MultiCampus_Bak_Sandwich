@@ -25,6 +25,7 @@ public class num_10871 {
          }
       }
       System.out.println(sb);
+      int a;
    }
 
 }
