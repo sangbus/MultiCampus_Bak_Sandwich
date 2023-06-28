@@ -25,7 +25,7 @@ public class num_1929 {
     public static void prime(int M,int N)
     {
         prime_save[0] = prime_save[1] = true;
-
+        System.out.println(Math.sqrt(prime_save.length));
         for(int i=2;i<=Math.sqrt(prime_save.length);i++)
         {
             if(prime_save[i])

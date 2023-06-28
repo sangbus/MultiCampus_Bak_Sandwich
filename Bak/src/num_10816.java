@@ -9,80 +9,88 @@ public class num_10816 {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N];
-
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        for(int i = 0; i < N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        int N = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(br.readLine());
+        int card[] = new int[N];
+        for(int i=0;i<N;i++)
+        {
+            card[i] = Integer.parseInt(st.nextToken());
         }
-
-        Arrays.sort(arr);
+        Arrays.sort(card);
 
         int M = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine());
+        for(int i=0;i<M;i++)
+        {
+            int num = Integer.parseInt(st.nextToken());
 
-        st = new StringTokenizer(br.readLine()," ");
-        StringBuilder sb = new StringBuilder();
+            /*
+            * upper bound - lower bound = 중복 원소에 대한 길이가 된다.
+            * */
 
-        for(int i = 0; i < M; i++) {
-            int key = Integer.parseInt(st.nextToken());
-
-            // upperBound와 lowerBound의 차이 값을 구한다.
-            sb.append(upperBound(arr, key) - lowerBound(arr, key)).append(' ');
+            sb.append(upper(card,num) - lower(card,num)).append(' ');
         }
+
         System.out.println(sb);
     }
 
-    private static int lowerBound(int[] arr, int key) {
-        int lo = 0;
-        int hi = arr.length;
+    
+    /*
+    * 하한(lower bound) : 찾고자 하는 값 이상의 값이 처음으로 나타나는 위치
+    * 중복 원소를 고려해야하기 때문에 하한과 상한의 개념을 알아야 한다.
+    * */
+    
+    public static int lower(int []first_card, int third_card)
+    {
+        int min=0;
+        int max = first_card.length; //배열 마지막 인덱스를 초과한 인덱스가 나올 수 있기 때문에 -1을 하지 않는다.
 
-        // lo가 hi랑 같아질 때 까지 반복
-        while (lo < hi) {
-
-            int mid = (lo + hi) / 2; // 중간위치를 구한다.
-
+        while(min < max)
+        {
+            int mid = min + ((max-min)/2);  // 인덱스 이동하려면 min을 더해줘야함.
+            if(third_card <= first_card[mid])   //찾고자 하는 값이 배열의 값보다 작다면 max값 조정
+            {
+                max = mid;
+            }
             /*
-             *  key 값이 중간 위치의 값보다 작거나 같을 경우
-             *
-             *  (중복 원소에 대해 왼쪽으로 탐색하도록 상계를 내린다.)
-             */
-            if (key <= arr[mid]) {
-                hi = mid;
+            * 찾고자 하는 값이 배열의 값보다 크다면 min값 조정
+            * 중복하는 값이 있을 수 있기 때문에 1씩 증가하며 값을 비교한다.
+            * */
+            else
+            {
+                min++;
             }
-
-            else {
-                lo = mid + 1;
-            }
-
         }
-
-        return lo;
+        return min;
     }
 
-    private static int upperBound(int[] arr, int key) {
-        int lo = 0;
-        int hi = arr.length;
 
-        // lo가 hi랑 같아질 때 까지 반복
-        while (lo < hi) {
-
-            int mid = (lo + hi) / 2; // 중간위치를 구한다.
-
-            // key값이 중간 위치의 값보다 작을 경우
-            if (key < arr[mid]) {
-                hi = mid;
+    /*
+     * 상한(upper bound) : 찾고자 하는 값을 초과하는 값이 처음으로 나타나는 위치
+     * */
+    public static int upper(int []first_card, int third_card)
+    {
+        int min=0;
+        int max =first_card.length;
+        while(min < max)
+        {
+            int mid = min + ((max-min)/2);
+            if(third_card < first_card[mid])
+            {
+                max = mid;
             }
-            // 중복원소의 경우 else에서 처리된다.
-            else {
-                lo = mid + 1;
+            else
+            {
+                min++;
             }
-
         }
-
-        return lo;
+        if(third_card == 10) {
+            System.out.println("min : " + min);
+            System.out.println("length : "+first_card.length);
+        }
+        return min;
     }
-
 
 }
