@@ -7,11 +7,26 @@ public class num_1874 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int num = Integer.parseInt(br.readLine());
         int stack[] = new int[num];
-        for(int i=0;i<num;i++)
-        {
-            for(int j=1;j<num;j++){
-
+        StringBuilder sb = new StringBuilder();
+        int idx = 0;
+        int start = 0;
+        while(num -- > 0){
+            int value = Integer.parseInt(br.readLine());
+            if(value > start){
+                for(int i=start+1;i<=value;i++){
+                    stack[idx] = i;
+                    idx++;
+                    sb.append('+').append('\n');
+                }
+                start = value;
             }
+            else if(stack[idx - 1] != value){
+                System.out.println("NO");
+                return;
+            }
+            idx --;
+            sb.append('-').append('\n');
         }
+        System.out.println(sb);
     }
 }
